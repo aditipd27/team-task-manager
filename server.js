@@ -16,7 +16,7 @@ app.use("/api/tasks", require("./routes/task"));
 app.use("/api/projects", require("./routes/project"));
 app.use("/api/dashboard", require("./routes/dashboard"));
 
-// ✅ Test route (ADD HERE)
+// ✅ Test route
 app.get("/test", (req, res) => {
   console.log("Test route hit");
   res.send("Test working");
@@ -27,10 +27,10 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-// ✅ Connect DB
+// ✅ Connect DB (ONLY ONCE)
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
-  .catch(err => console.log(err));
+  .catch(err => console.log("DB Error:", err));
 
 // ✅ Start server
 const PORT = process.env.PORT || 5000;
